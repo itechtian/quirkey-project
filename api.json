@@ -1,0 +1,11 @@
+{
+    "code": "200",
+    "data": [
+        {
+            "name": "Clark Kent",
+            "age":"26",
+            "country":"Nigeria"
+            
+        }
+    ]
+}

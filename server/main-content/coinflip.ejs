@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link ref="stylesheet" href="main.css" type="text/css">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      margin-left: 300px;
+      color: #ffffff;
+    }
+
+    .read {
+      background: #331f2c;
+      padding: 5px;
+      border-radius: 5px;
+      color: #de2b30;
+    }
+
+    .btn-login {
+      background: #df004f;
+      color: #ffffff;
+      border: none;
+      padding: 15px;
+      width: 130px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+
+    .coin-flip-top {
+      display: flex;
+      justify-content: space-around;
+      background: #1a1a1a;
+      margin: 20px;
+      border-radius: 5px;
+      padding-bottom: 20px;
+      align-items: center;
+    }
+
+    .coin-flip-top-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .inventory {
+      position: absolute;
+      width: 99.5%;
+      left: 0;
+      top: 0;
+      height: 99vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1a1a1a52;
+
+    }
+
+    .inventory-item {
+      width: 50%;
+      border: #97979e solid 3px;
+      height: 80vh;
+      background-color: #1a1a1a;
+      margin: 20px;
+    }
+
+    .inventory-close-btn {
+      font-size: 40px;
+      float: right;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include('base'); -%>
+
+    <div class="wrapper">
+      <div>
+        <div class="coin-flip-top">
+          <div class="coin-flip-top-item">
+            <div>
+              <img src="readbecon.svg" width="80" /><br />
+              <span>BEACAN (RED)</span>
+            </div>
+            <div>
+              <span class="read">47%</span>
+            </div>
+          </div>
+          <div class="coin-flip-top-item">
+            <div>
+              <span>3</span><br />
+              <span>JOINABLE</span>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <h4>TOTAL AMOUNT</h4>
+            <h5>$100.77</h5>
+            <% if(!user) {%>
+              <a href="auth/steam"><button class="btn-login">Create</button></a>
+              <%} else { %>
+                <button class="btn-login" id="open-inventory">Create</button>
+                <% } %>
+          </div>
+          <div class="coin-flip-top-item">
+            <div>
+              <span>82</span><br />
+              <span>GAMES</span>
+            </div>
+          </div>
+          <div class="coin-flip-top-item">
+            <div style="margin-right:15px;">
+              <span class="read">53%</span>
+            </div>
+            <div>
+              <img src="readbecon.svg" width="80" /><br />
+              <span>BEACAN (RED)</span>
+            </div>
+          </div>
+        </div>
+        <div class="inventory" id="inventory">
+          <div class="inventory-item">
+            <span class="inventory-close-btn" id="close">x</span>
+            <header style="border-bottom: #97979e solid; padding:10px;">
+              <h3>Create Coinflip</h3>
+            </header>
+            <main style="height: 60vh; width: 100%;display: flex;align-items: center;justify-content: center;">
+         
+
+                  <h5 id="bbb"></h5>
+            </main>
+            <footer style="border-top: #97979e solid;padding: 10px;">
+              <button class="btn-login" style="float: right; cursor: not-allowed;">Create</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      let closeInventory = document.getElementById('inventory')
+      let closeInventoryBtn = document.getElementById('close')
+      let openInventory = document.getElementById('open-inventory')
+      let apiKey = 'sl46z_uS2oHVc-5EDAkghaVe9Kg'
+
+      closeInventory.style.display = "none"
+
+
+      closeInventoryBtn.addEventListener('click', () => {
+        closeInventory.style.display = "none"
+      })
+
+      openInventory.addEventListener('click', () => {
+        closeInventory.style.display = "block"
+      })
+
+
+      fetch('inventory').then(response => {
+        console.log(response.json())
+
+      })
+      .catch(e => {
+        console.log(e.message)
+      })
+      
+    </script>
+</body>
+
+</html>

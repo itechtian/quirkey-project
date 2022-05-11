@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("background.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 98vh;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .top-nav-left {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .top-nav-left>ul {
+            display: inline-flex;
+            list-style: none;
+
+        }
+
+        .top-nav-left>ul>li {
+            padding-left: 30px;
+            cursor: pointer;
+        }
+
+        .d {
+            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-left: 15px;
+            width: 60%;
+            cursor: pointer;
+        }
+
+        .d .active {
+            border-bottom: solid yellow;
+        }
+
+        .left-nav {
+            display: flex;
+            border-top: #97979e solid 3px;
+            border-bottom: #97979e solid 3px;
+            height: 100px;
+            background: #202225;
+            justify-content: center;
+            align-items: center;
+            width: 100.6%;
+        }
+
+        .right-nav {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            width: 50%;
+        }
+
+        .cash-label {
+            background: #4d4d4d;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .left-nav-item {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .icon {
+            width: 20px;
+        }
+
+        .btn-login {
+            background: #df004f;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            width: 130px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            width: 20%;
+            background: #202225;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            border-right: #97979e solid 3px;
+            color: #ffffff;
+        }
+
+        .logo {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 20vh;
+        }
+
+        .d-flag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .b-flag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wrap-item {
+            background: #1a1a1a;
+            width: 250px;
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-weight: 900;
+            color: #ffffff;
+            border-radius: 5px;
+            /*border: #707070 solid 1px ;*/
+        }
+
+        .online-bar {
+            background: #1a1a1a;
+            height: 5vh;
+            padding: 15px;
+            font-weight: 900;
+            display: flex;
+            justify-content: space-evenly;
+            border-bottom: #df004f solid 2px;
+        }
+
+        .logo-img {
+            width: 100px;
+        }
+
+        .logo-img-logout {
+            width: 161px;
+        }
+
+        .header-item {
+            color: #ffffff;
+            margin-left: 18%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-item">
+        <div class="top-nav-left">
+            <ul>
+                <li>Provably Fair</li>
+                <li>Frequently Asked</li>
+                <li>Privacy Policy</li>
+                <li>Support</li>
+            </ul>
+
+            <ul>
+                <li><img src="box.svg" class="icon" /> Daily Case</li>
+            </ul>
+
+            <ul>
+                <li><img src="twitter.svg" class="icon" /></li>
+                <li><img src="discord.svg" class="icon" /></li>
+                <li><img src="steam.svg" class="icon" /></li>
+            </ul>
+        </div>
+
+        <div class="left-nav">
+            <div class="left-nav-item">
+                <div class="d">
+                    <a href="/"> <span>Jackpot</span> </a>
+                    <span class="cash-label">$56.1</span>
+                </div>
+                <div class="d">
+                    <span>Jackpot</span>
+                    <span class="cash-label">$0.00</span>
+                </div>
+                <div class="d">
+                    <a href="/coinflip"> <span>Conflip</span></a>
+                    <span class="cash-label">$98.00</span>
+                </div>
+            </div>
+
+            <div class="right-nav">
+                <% if(!user) {%>
+                    <a href="auth/steam"><button class="btn-login" onclick="playOnlogon()">Login</button></a>
+                    <% } else { %>
+                        <a href="logout"><button class="btn-login">Log out</button></a>
+                        <% } %>
+            </div>
+
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="logo">
+            <% if(!user) {%>
+                <img src="logo.svg" class="logo-img-logout" />
+                <% } else { %>
+                    <img src="<%= user.photos[2].value %>" class="logo-img" /><br>
+                    <span>
+                        <%= user.displayName%>
+                    </span>
+                    <% } %>
+        </div>
+        <div class="online-bar">
+            <span class="b-flag">
+                <h3>Live Chat</h3>
+            </span>
+        </div>
+        <div class="side-content"></div>
+    </div>
+    <script>
+        function playOnlogon() {
+            let audio = new Audio('monitor-turn-on.mp3');
+            audio.play();
+        }
+    </script>
+</body>
+
+</html>
